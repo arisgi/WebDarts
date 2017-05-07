@@ -97,6 +97,14 @@
           scene.add(innerSingle[i]);
         }
 
+        // outer bull zone
+        geo = new THREE.CircleGeometry(20, 100);
+        mat = new THREE.MeshBasicMaterial({ color: 0x882629 });
+        var outerBull = new THREE.Mesh(geo, mat);
+        outerBull.position.z = 0.04;
+        outerBull.rotation.z = Math.PI / 20;
+        scene.add(outerBull);
+
         camera.position.x = 0;
         camera.position.y = 0;
         camera.position.z = 1000;
