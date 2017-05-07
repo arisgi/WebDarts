@@ -79,6 +79,24 @@
           scene.add(triple[i]);
         }
 
+        // inner single zone
+        var innerSingle = [];
+        for (var i = 0; i < 20; i++) {
+          geo = new THREE.CircleGeometry(105, 100, 2 * Math.PI * i / 20, 2 * Math.PI * 1 / 20);
+
+          if (i % 2 === 0) {
+            mat = new THREE.MeshBasicMaterial({ color: 0x0B0D14 });
+          } else {
+            mat = new THREE.MeshBasicMaterial({ color: 0xEAEBEE });
+          }
+
+          innerSingle[i] = new THREE.Mesh(geo, mat);
+          innerSingle[i].position.z = 0.03;
+          innerSingle[i].rotation.z = Math.PI / 20;
+
+          scene.add(innerSingle[i]);
+        }
+
         camera.position.x = 0;
         camera.position.y = 0;
         camera.position.z = 1000;
