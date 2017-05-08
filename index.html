@@ -128,8 +128,8 @@
 
         Leap.loop({
           hand: function(hand){
-            geo = new THREE.CircleGeometry(5, 100);
-            mat = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+            geo = new THREE.RingGeometry(3, 5, 100);
+            mat = new THREE.MeshBasicMaterial({ color: 0xFFD700 });
             var target = new THREE.Mesh(geo, mat);
             target.position.x = hand.screenPosition()[0] - 750;
             target.position.y = - hand.screenPosition()[1];
