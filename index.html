@@ -147,6 +147,16 @@
           requestAnimationFrame(render);
           webGLRenderer.render(scene, camera);
         }
+
+        function wait(latency) {
+          var time1 = new Date();
+          while (true) {
+            var time2 = new Date();
+            if (time2 - time1 > latency) {
+              break;
+            }
+          }
+        }
       }
       window.onload = init;
     </script>
