@@ -131,7 +131,7 @@
             geo = new THREE.RingGeometry(3, 5, 100);
             mat = new THREE.MeshBasicMaterial({ color: 0xFFD700 });
             var target = new THREE.Mesh(geo, mat);
-            target.position.x = hand.screenPosition()[0] - 750;
+            target.position.x = hand.screenPosition()[0] - 600;
             target.position.y = - hand.screenPosition()[1];
             target.position.z = 1;
             scene.add(target);
