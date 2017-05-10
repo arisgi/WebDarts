@@ -135,9 +135,15 @@
             target.position.y = - hand.screenPosition()[1];
             target.position.z = 1;
             scene.add(target);
-            setTimeout(function() {
+
+            if (hand.screenPosition()[2] < -100) {
+              wait(1000);
               scene.remove(target);
-            }, 10);
+            } else {
+              setTimeout(function() {
+                scene.remove(target);
+              }, 10);
+            }
           }
         }).use('screenPosition');
 
