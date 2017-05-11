@@ -125,6 +125,9 @@
 
         document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
+        window.throwData = {};
+        window.loopCount = 0;
+
         Leap.loop({
           hand: function(hand){
             geo = new THREE.RingGeometry(3, 5, 100);
@@ -133,22 +136,44 @@
             target.position.x = hand.screenPosition()[0] - 600;
             target.position.y = - hand.screenPosition()[1];
             target.position.z = 1;
-            scene.add(target);
 
-            if (hand.screenPosition()[2] < -100) {
-              wait(1000);
-              scene.remove(target);
-            } else {
-              setTimeout(function() {
-                scene.remove(target);
-              }, 10);
+            if (!window.throwData.status) {
+              scene.add(target);
+
+              if (hand.screenPosition()[2] < -100) {
+                window.throwData.status = true;
+                window.throwData.count = window.loopCount;
+                window.throwData.target = target;
+              } else {
+                setTimeout(function() {
+                  scene.remove(target);
+                }, 10);
+              }
             }
+
+            console.log(hand.screenPosition());
           }
         }).use('screenPosition');
 
         render();
 
         function render() {
+          window.loopCount++;
+
+          // throw action
+          if (window.throwData.status) {
+            var count = window.loopCount - window.throwData.count;
+
+            wait(300);
+            if (count < 7) {
+              count % 2 === 1 ? scene.remove(window.throwData.target) : scene.add(window.throwData.target);
+              //debugger;
+            } else {
+              scene.remove(window.throwData.target);
+              window.throwData.status = false;
+            }
+          }
+
           requestAnimationFrame(render);
           renderer.render(scene, camera);
         }
