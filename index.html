@@ -22,11 +22,10 @@
         var scene = new THREE.Scene();
 
         var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
 
-        var webGLRenderer = new THREE.WebGLRenderer();
-
-        webGLRenderer.setClearColor(new THREE.Color(0xAAAAAA));
-        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(new THREE.Color(0xAAAAAA));
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
         var geo, mat, col;
 
@@ -124,7 +123,7 @@
         spotLight.position.set(-40, 60, -10);
         scene.add(spotLight);
 
-        document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
+        document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
         Leap.loop({
           hand: function(hand){
@@ -151,7 +150,7 @@
 
         function render() {
           requestAnimationFrame(render);
-          webGLRenderer.render(scene, camera);
+          renderer.render(scene, camera);
         }
 
         function wait(latency) {
