@@ -147,6 +147,28 @@
         shaft.position.z = 105;
         scene.add(shaft);
 
+        // flight
+        var flightGeo = [];
+        var flightMat = [];
+        var flight = [];
+        for (var i = 0; i < 4; i++) {
+          flightGeo[i] = new THREE.BoxGeometry(16, 40, 1);
+          flightMat[i] = new THREE.MeshBasicMaterial({
+            color: 0x2FA1D6,
+            side: THREE.DoubleSide
+          });
+          flight[i] = new THREE.Mesh(flightGeo[i], flightMat[i]);
+          flight[i].rotation.x = Math.PI / 2;
+          flight[i].position.z = 140;
+          scene.add(flight[i]);
+        }
+        flight[0].position.x = 8;
+        flight[1].position.y = 8;
+        flight[1].rotation.y = Math.PI / 2;
+        flight[2].position.x = -8;
+        flight[3].position.y = -8;
+        flight[3].rotation.y = -Math.PI / 2;
+
         document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
         window.throwData = {};
