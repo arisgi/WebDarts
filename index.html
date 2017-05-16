@@ -123,13 +123,13 @@
         spotLight.position.set(-40, 60, -10);
         scene.add(spotLight);
 
-        // chip
-        var chipGeo = new THREE.ConeGeometry(3, 30);
-        var chipMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-        var chip = new THREE.Mesh(chipGeo, chipMat);
-        chip.rotation.x = Math.PI / 2;
-        chip.position.z = 1;
-        scene.add(chip);
+        // tip
+        var tipGeo = new THREE.ConeGeometry(3, 30);
+        var tipMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        var tip = new THREE.Mesh(tipGeo, tipMat);
+        tip.rotation.x = Math.PI / 2;
+        tip.position.z = 1;
+        scene.add(tip);
 
         document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
