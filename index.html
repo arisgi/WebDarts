@@ -127,8 +127,8 @@
         var tipGeo = new THREE.ConeGeometry(3, 30);
         var tipMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
         var tip = new THREE.Mesh(tipGeo, tipMat);
-        tip.rotation.x = Math.PI / 2;
-        tip.position.z = 1;
+        tip.rotation.x = Math.PI * 3 / 2;
+        tip.position.z = 10;
         scene.add(tip);
 
         document.getElementById("WebGL-output").appendChild(renderer.domElement);
