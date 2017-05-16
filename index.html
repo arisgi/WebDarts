@@ -123,6 +123,14 @@
         spotLight.position.set(-40, 60, -10);
         scene.add(spotLight);
 
+        // Create Darts geometry
+        var chipGeo = new THREE.ConeGeometry(3, 30);
+        var chipMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        var chip = new THREE.Mesh(chipGeo, chipMat);
+        chip.rotation.x = Math.PI / 2;
+        chip.position.z = 1;
+        scene.add(chip);
+
         document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
         window.throwData = {};
