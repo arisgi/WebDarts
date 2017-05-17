@@ -172,12 +172,22 @@
             } else {
               scene.remove(window.throwData.target);
 
-              drawDarts(window.throwData.target.position);
+              darts = drawDarts(window.throwData.target.position);
 
               window.throwData.status = "release";
             }
           } else if (window.throwData.status === "release") {
-            window.throwData.status = "stick";
+            if (darts.tip.position.z > 10) {
+              darts.tip.position.z -= 20;
+              darts.barrel.position.z -= 20;
+              darts.shaft.position.z -= 20;
+              darts.flight[0].position.z -= 20;
+              darts.flight[1].position.z -= 20;
+              darts.flight[2].position.z -= 20;
+              darts.flight[3].position.z -= 20;
+            } else {
+              window.throwData.status = "stick";
+            }
           } else if (window.throwData.status === "stick") {
             window.throwData.status = "aim";
           }
@@ -204,7 +214,7 @@
           tip.rotation.x = Math.PI * 3 / 2;
           tip.position.x = targetPosition.x;
           tip.position.y = targetPosition.y;
-          tip.position.z = 10;
+          tip.position.z = 10 + 1000;
           scene.add(tip);
 
           // barrel
@@ -214,7 +224,7 @@
           barrel.rotation.x = Math.PI * 3 / 2;
           barrel.position.x = targetPosition.x;
           barrel.position.y = targetPosition.y;
-          barrel.position.z = 55;
+          barrel.position.z = 55 + 1000;;
           scene.add(barrel);
 
           // shaft
@@ -224,7 +234,7 @@
           shaft.rotation.x = Math.PI * 3 / 2;
           shaft.position.x = targetPosition.x;
           shaft.position.y = targetPosition.y;
-          shaft.position.z = 105;
+          shaft.position.z = 105 + 1000;
           scene.add(shaft);
 
           // flight
@@ -239,7 +249,7 @@
             });
             flight[i] = new THREE.Mesh(flightGeo[i], flightMat[i]);
             flight[i].rotation.x = Math.PI / 2;
-            flight[i].position.z = 140;
+            flight[i].position.z = 140 + 1000;
             scene.add(flight[i]);
           }
           flight[0].position.x = targetPosition.x + 8;
@@ -252,6 +262,13 @@
           flight[3].position.x = targetPosition.x;
           flight[3].position.y = targetPosition.y - 8;
           flight[3].rotation.y = -Math.PI / 2;
+
+          return {
+            tip: tip,
+            barrel: barrel,
+            shaft: shaft,
+            flight: flight
+          };
         }
       }
       window.onload = init;
