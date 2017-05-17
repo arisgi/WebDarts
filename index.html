@@ -178,13 +178,33 @@
             }
           } else if (window.throwData.status === "release") {
             if (darts.tip.position.z > 10) {
-              darts.tip.position.z -= 20;
-              darts.barrel.position.z -= 20;
-              darts.shaft.position.z -= 20;
-              darts.flight[0].position.z -= 20;
-              darts.flight[1].position.z -= 20;
-              darts.flight[2].position.z -= 20;
-              darts.flight[3].position.z -= 20;
+              darts.tip.position.x += window.throwData.target.position.x / 22;
+              darts.tip.position.y += window.throwData.target.position.y / 22;
+              darts.tip.position.z -= 25;
+
+              darts.barrel.position.x += window.throwData.target.position.x / 22;
+              darts.barrel.position.y += window.throwData.target.position.y / 22;
+              darts.barrel.position.z -= 25;
+
+              darts.shaft.position.x += window.throwData.target.position.x / 22;
+              darts.shaft.position.y += window.throwData.target.position.y / 22;
+              darts.shaft.position.z -= 25;
+
+              darts.flight[0].position.x += window.throwData.target.position.x / 22;
+              darts.flight[0].position.y += window.throwData.target.position.y / 22;
+              darts.flight[0].position.z -= 25;
+
+              darts.flight[1].position.x += window.throwData.target.position.x / 22;
+              darts.flight[1].position.y += window.throwData.target.position.y / 22;
+              darts.flight[1].position.z -= 25;
+
+              darts.flight[2].position.x += window.throwData.target.position.x / 22;
+              darts.flight[2].position.y += window.throwData.target.position.y / 22;
+              darts.flight[2].position.z -= 25;
+
+              darts.flight[3].position.x += window.throwData.target.position.x / 22;
+              darts.flight[3].position.y += window.throwData.target.position.y / 22;
+              darts.flight[3].position.z -= 25;
             } else {
               window.throwData.status = "stick";
             }
@@ -212,9 +232,7 @@
           var tipMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
           var tip = new THREE.Mesh(tipGeo, tipMat);
           tip.rotation.x = Math.PI * 3 / 2;
-          tip.position.x = targetPosition.x;
-          tip.position.y = targetPosition.y;
-          tip.position.z = 10 + 1000;
+          tip.position.z = 10 + 550;
           scene.add(tip);
 
           // barrel
@@ -222,9 +240,7 @@
           var barrelMat = new THREE.MeshBasicMaterial({ color: 0xC0C0C0 });
           var barrel = new THREE.Mesh(barrelGeo, barrelMat);
           barrel.rotation.x = Math.PI * 3 / 2;
-          barrel.position.x = targetPosition.x;
-          barrel.position.y = targetPosition.y;
-          barrel.position.z = 55 + 1000;;
+          barrel.position.z = 55 + 550;;
           scene.add(barrel);
 
           // shaft
@@ -232,9 +248,7 @@
           var shaftMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
           var shaft = new THREE.Mesh(shaftGeo, shaftMat);
           shaft.rotation.x = Math.PI * 3 / 2;
-          shaft.position.x = targetPosition.x;
-          shaft.position.y = targetPosition.y;
-          shaft.position.z = 105 + 1000;
+          shaft.position.z = 105 + 550;
           scene.add(shaft);
 
           // flight
@@ -249,18 +263,14 @@
             });
             flight[i] = new THREE.Mesh(flightGeo[i], flightMat[i]);
             flight[i].rotation.x = Math.PI / 2;
-            flight[i].position.z = 140 + 1000;
+            flight[i].position.z = 140 + 550;
             scene.add(flight[i]);
           }
-          flight[0].position.x = targetPosition.x + 8;
-          flight[0].position.y = targetPosition.y;
-          flight[1].position.x = targetPosition.x;
-          flight[1].position.y = targetPosition.y + 8;
+          flight[0].position.x = 8;
+          flight[1].position.y = 8;
           flight[1].rotation.y = Math.PI / 2;
-          flight[2].position.x = targetPosition.x - 8;
-          flight[2].position.y = targetPosition.y;
-          flight[3].position.x = targetPosition.x;
-          flight[3].position.y = targetPosition.y - 8;
+          flight[2].position.x = - 8;
+          flight[3].position.y = - 8;
           flight[3].rotation.y = -Math.PI / 2;
 
           return {
