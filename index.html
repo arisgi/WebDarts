@@ -126,6 +126,7 @@
         document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
         window.throwData = {};
+        window.throwData.status = "aim";
         window.loopCount = 0;
 
         Leap.loop({
@@ -137,11 +138,11 @@
             target.position.y = - hand.screenPosition()[1];
             target.position.z = 1;
 
-            if (!window.throwData.status) {
+            if (window.throwData.status === "aim") {
               scene.add(target);
 
               if (hand.screenPosition()[2] < -100) {
-                window.throwData.status = true;
+                window.throwData.status = "aimed";
                 window.throwData.count = window.loopCount;
                 window.throwData.target = target;
               } else {
@@ -161,7 +162,7 @@
           window.loopCount++;
 
           // throw action
-          if (window.throwData.status) {
+          if (window.throwData.status === "aimed") {
             var count = window.loopCount - window.throwData.count;
 
             wait(300);
@@ -173,8 +174,12 @@
 
               drawDarts(window.throwData.target.position);
 
-              window.throwData.status = false;
+              window.throwData.status = "release";
             }
+          } else if (window.throwData.status === "release") {
+            window.throwData.status = "stick";
+          } else if (window.throwData.status === "stick") {
+            window.throwData.status = "aim";
           }
 
           requestAnimationFrame(render);
