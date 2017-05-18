@@ -116,7 +116,7 @@
 
         camera.position.x = 0;
         camera.position.y = 0;
-        camera.position.z = 750;
+        camera.position.z = 800;
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         var spotLight = new THREE.SpotLight(0xFFFFFF);
@@ -178,33 +178,51 @@
             }
           } else if (window.throwData.status === "release") {
             if (darts.tip.position.z > 10) {
-              darts.tip.position.x += window.throwData.target.position.x / 22;
-              darts.tip.position.y += window.throwData.target.position.y / 22;
-              darts.tip.position.z -= 25;
+              darts.tip.position.x += window.throwData.target.position.x / 30;
+              darts.tip.position.y += window.throwData.target.position.y / 30;
+              darts.tip.position.z -= 20;
 
-              darts.barrel.position.x += window.throwData.target.position.x / 22;
-              darts.barrel.position.y += window.throwData.target.position.y / 22;
-              darts.barrel.position.z -= 25;
+              darts.barrel.position.x += window.throwData.target.position.x / 30;
+              darts.barrel.position.y += window.throwData.target.position.y / 30;
+              darts.barrel.position.z -= 20;
 
-              darts.shaft.position.x += window.throwData.target.position.x / 22;
-              darts.shaft.position.y += window.throwData.target.position.y / 22;
-              darts.shaft.position.z -= 25;
+              darts.shaft.position.x += window.throwData.target.position.x / 30;
+              darts.shaft.position.y += window.throwData.target.position.y / 30;
+              darts.shaft.position.z -= 20;
 
-              darts.flight[0].position.x += window.throwData.target.position.x / 22;
-              darts.flight[0].position.y += window.throwData.target.position.y / 22;
-              darts.flight[0].position.z -= 25;
+              darts.flight[0].position.x += window.throwData.target.position.x / 30;
+              darts.flight[0].position.y += window.throwData.target.position.y / 30;
+              darts.flight[0].position.z -= 20;
 
-              darts.flight[1].position.x += window.throwData.target.position.x / 22;
-              darts.flight[1].position.y += window.throwData.target.position.y / 22;
-              darts.flight[1].position.z -= 25;
+              darts.flight[1].position.x += window.throwData.target.position.x / 30;
+              darts.flight[1].position.y += window.throwData.target.position.y / 30;
+              darts.flight[1].position.z -= 20;
 
-              darts.flight[2].position.x += window.throwData.target.position.x / 22;
-              darts.flight[2].position.y += window.throwData.target.position.y / 22;
-              darts.flight[2].position.z -= 25;
+              darts.flight[2].position.x += window.throwData.target.position.x / 30;
+              darts.flight[2].position.y += window.throwData.target.position.y / 30;
+              darts.flight[2].position.z -= 20;
 
-              darts.flight[3].position.x += window.throwData.target.position.x / 22;
-              darts.flight[3].position.y += window.throwData.target.position.y / 22;
-              darts.flight[3].position.z -= 25;
+              darts.flight[3].position.x += window.throwData.target.position.x / 30;
+              darts.flight[3].position.y += window.throwData.target.position.y / 30;
+              darts.flight[3].position.z -= 20;
+
+              if (darts.tip.position.z <= 610 && darts.tip.position.z > 310) {
+                darts.tip.position.y += 1;
+                darts.barrel.position.y += 1;
+                darts.shaft.position.y += 1;
+                darts.flight[0].position.y += 1;
+                darts.flight[1].position.y += 1;
+                darts.flight[2].position.y += 1;
+                darts.flight[3].position.y += 1;
+              } else if (darts.tip.position.z <= 310) {
+                darts.tip.position.y -= 1;
+                darts.barrel.position.y -= 1;
+                darts.shaft.position.y -= 1;
+                darts.flight[0].position.y -= 1;
+                darts.flight[1].position.y -= 1;
+                darts.flight[2].position.y -= 1;
+                darts.flight[3].position.y -= 1;
+              }
             } else {
               window.throwData.status = "stick";
             }
@@ -232,7 +250,7 @@
           var tipMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
           var tip = new THREE.Mesh(tipGeo, tipMat);
           tip.rotation.x = Math.PI * 3 / 2;
-          tip.position.z = 10 + 550;
+          tip.position.z = 10 + 600;
           scene.add(tip);
 
           // barrel
@@ -240,7 +258,7 @@
           var barrelMat = new THREE.MeshBasicMaterial({ color: 0xC0C0C0 });
           var barrel = new THREE.Mesh(barrelGeo, barrelMat);
           barrel.rotation.x = Math.PI * 3 / 2;
-          barrel.position.z = 55 + 550;;
+          barrel.position.z = 55 + 600;;
           scene.add(barrel);
 
           // shaft
@@ -248,7 +266,7 @@
           var shaftMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
           var shaft = new THREE.Mesh(shaftGeo, shaftMat);
           shaft.rotation.x = Math.PI * 3 / 2;
-          shaft.position.z = 105 + 550;
+          shaft.position.z = 105 + 600;
           scene.add(shaft);
 
           // flight
@@ -263,7 +281,7 @@
             });
             flight[i] = new THREE.Mesh(flightGeo[i], flightMat[i]);
             flight[i].rotation.x = Math.PI / 2;
-            flight[i].position.z = 140 + 550;
+            flight[i].position.z = 140 + 600;
             scene.add(flight[i]);
           }
           flight[0].position.x = 8;
