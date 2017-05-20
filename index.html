@@ -114,6 +114,9 @@
         innerBull.rotation.z = Math.PI / 20;
         scene.add(innerBull);
 
+        // use with Raycaster
+        window.board = scene.children;
+
         camera.position.x = 0;
         camera.position.y = 0;
         camera.position.z = 800;
@@ -224,6 +227,17 @@
                 darts.flight[3].position.y -= 1;
               }
             } else {
+              targetVector = new THREE.Vector2(window.throwData.target.position.x, window.throwData.target.position.y);
+
+              raycaster = new THREE.Raycaster();
+              raycaster.setFromCamera(targetVector, camera);
+
+              intersects = raycaster.intersectObjects(window.board);
+
+              if (intersects.length > 0) {
+                debugger;
+              }
+
               window.throwData.status = "stick";
             }
           } else if (window.throwData.status === "stick") {
